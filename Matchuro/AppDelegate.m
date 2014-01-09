@@ -7,14 +7,27 @@
 //
 
 #import "AppDelegate.h"
+#import "MatchuroTabBarViewController.h"
+
+@interface AppDelegate ()
+@property (strong, nonatomic) MatchuroTabBarViewController *matchuro;
+@end
 
 @implementation AppDelegate
+
+- (MatchuroTabBarViewController *)matchuro {
+    if (!_matchuro) {
+        _matchuro = [[MatchuroTabBarViewController alloc] init];
+    }
+    return _matchuro;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    self.window.rootViewController = self.matchuro;
     [self.window makeKeyAndVisible];
     return YES;
 }
