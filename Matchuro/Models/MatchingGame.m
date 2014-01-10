@@ -59,7 +59,7 @@
 
 - (void)chooseCardAtIndex:(NSUInteger)index {
     Card *card = [self cardAtIndex:index];
-    NSLog(@"Card chosen, %@", card.contents);
+    [self addLog:[NSString stringWithFormat:@"Card chosen, %@", card.contents]];
     if (!card.isMatched) {
         if (card.isChosen) {
             [self.selectedCards removeObject:card];
@@ -74,6 +74,7 @@
             
             // match against another card or cards
             int matchScore = [card match:self.selectedCards];
+            [self addLog:[NSString stringWithFormat:@"Match score %d", matchScore]];
             
             // we got a match. Add score and disable ALL cards as per rules
             if (matchScore) {
@@ -98,6 +99,17 @@
 
 - (Card *)cardAtIndex:(NSUInteger)index {
     return (index < [self.cards count]) ? self.cards[index] : nil;
+}
+
+- (NSMutableArray *)log {
+    if (!_log) {
+        _log = [[NSMutableArray alloc] init];
+    }
+    return _log;
+}
+
+- (void)addLog:(NSString *)message {
+    [self.log addObject:message];
 }
 
 @end

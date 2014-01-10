@@ -7,6 +7,7 @@
 //
 
 #import "CardGameNavigationController.h"
+#import "CardGameLogViewController.h"
 
 @interface CardGameNavigationController ()
 
@@ -15,11 +16,11 @@
 @implementation CardGameNavigationController
 
 - (void)showGameLog:(MatchingGame *)game {
-    NSLog(@"game log %@", game);
-    UIViewController *newView = [[UIViewController alloc] init];
-    newView.title = @"some view";
+    CardGameLogViewController *logViewController = [[CardGameLogViewController alloc] init];
+    logViewController.title = @"Game Log";
+    logViewController.log = game.log;
     
-    [self pushViewController:newView animated:YES];
+    [self pushViewController:logViewController animated:YES];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
