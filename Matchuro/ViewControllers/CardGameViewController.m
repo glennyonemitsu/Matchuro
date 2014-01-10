@@ -34,16 +34,14 @@
     
     // setup new game button
     CGRect resetGameButtonLocation = CGRectMake(parentSize.width - 116, parentSize.height - 96, 100, 30);
-    UIButton *resetGameButton = [[UIButton alloc] initWithFrame:resetGameButtonLocation];
+    UIButton *resetGameButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    resetGameButton.frame = resetGameButtonLocation;
     resetGameButton.backgroundColor = [UIColor blueColor];
+    [resetGameButton setTitle:@"New Game" forState:UIControlStateNormal];
+    [resetGameButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [resetGameButton addTarget:self
                         action:@selector(startNewGame)
               forControlEvents:UIControlEventTouchUpInside];
-    UILabel *resetLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, 8, 80, 14)];
-    resetLabel.text = @"New Game";
-    resetLabel.textColor = [UIColor whiteColor];
-    resetLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleBody];
-    [resetGameButton addSubview:resetLabel];
     [self.view addSubview:resetGameButton];
     
     // setup score label
